@@ -44,7 +44,7 @@
                            </td>
                            <td>
                               <a href=" {{url('category/edit/'.$category->id) }}" class="btn btn-info">Edit</a>
-                              <a href=" {{url('softdelete/category/'.$category->id) }}" class="btn btn-danger">Delete</a>
+                              <a href=" {{url('softdelete/category/'.$category->id) }}" class="btn btn-danger">Cancel</a>
                            </td>
                         </tr>
                         @endforeach
@@ -92,7 +92,7 @@
                      </thead>
                      <tbody>
                         <!-- @php( $i= 1) -->
-                        @foreach($trachCat as $category)
+                        @foreach($trashCat as $category)
                         <tr>
                            <th scope="row">{{$categories->firstItem()+$loop->index}}</th>
                            <td>{{$category->category_name}}</td>
@@ -101,24 +101,24 @@
                               @if($category->created_at == NULL)
                               <span class ="texts-danger">No Date Set</span>
                               @else
-                              {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
+                              {{ Carbon\Carbon::parse($category->created_at)->diffForHumans()}}
                               @endif
                            </td>
                            <td>
-                              <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-info">Edit</a>
-                              <a href="" class="btn btn-danger">Delefffte</a>
+                              <a href="{{ url('category/restore/'.$category->id) }}" class="btn btn-info">Restore</a>
+                              <a href="{{url('pdelete/category/'.$category->id) }}" class="btn btn-danger">Delete</a>
                            </td>
                         </tr>
                         @endforeach
                      </tbody>
                   </table>
-                  {{$trachCat->links()}}
+                  {{$trashCat->links()}}
                </div>
             </div>
             <div class="col-md-4">
             </div>
          </div>
       </div>
-      <!-- End Trush -->
+      <!-- End Trash -->
    </div>
 </x-app-layout>
